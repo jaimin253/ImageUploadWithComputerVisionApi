@@ -1,0 +1,67 @@
+﻿@model TestFileUpload.Models.ImageModel
+
+@{
+    ViewBag.Title = "Latest Image";
+}
+
+<style>
+    #horizontal-list {
+        margin-top: 25px;
+    }
+
+    ul#horizontal-list li {
+        display: inline-flex;
+        padding: 15px;
+        border: 1px solid black;
+        border-radius: 15px;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+</style>
+
+<script type="text/javascript">
+    function loadData() {
+        var tagsData = "@Model.tags".split(',');
+        for (i = 0; i < tagsData.length; i++) {
+            var list = document.getElementById("horizontal-list");
+            //var c = document.createElement('UL')
+            var item = document.createElement('li')
+            var descriptions = tagsData[i];
+            item.innerHTML = descriptions
+            list.appendChild(item);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadData);
+
+    function redirectToUpload() {
+        window.location.href = '@Url.Action("Index", "ImageUpload")';
+    }
+
+</script>
+
+<br />
+<h3>Uploaded Image</h3> <br />
+<div>
+    <div>
+        <img src="@Model.Path" title="Uploaded Image" width="200" height="200" />
+    </div>
+    <div><b>ImageId: </b>@Model.ImageId</div>
+</div>
+
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">Tags</div>
+    <div class="panel-body">
+        <div id="displayTags" class="table">
+            <ul id="horizontal-list"></ul>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary" onclick="redirectToUpload()">New Image</button>
+
+
+
+
+

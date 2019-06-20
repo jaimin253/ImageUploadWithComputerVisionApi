@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Image Upload";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Upload", "ImageUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(false)
+<fieldset class="form-horizontal">
+    <div class="row">
+        <div class="form-group">
+            <label for="Photo">Upload Image</label>
+            <input type="file" class="form-control-file" id="image" name="image">
+        </div>
+    </div>
+    <div class="row">
+        <input type="submit" value="Analyze Image" class="btn btn-primary" />
+    </div>
+    
+</fieldset>
+
+}
+
